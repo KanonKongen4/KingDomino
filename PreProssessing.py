@@ -1,7 +1,19 @@
 import cv2 as cv
-import numpy
+import numpy as np
 
 img = cv.imread("20.jpg")
+img_grayscale = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+template = cv.imread('crown_upscaled_180_Rotation.png', 0)
+#template_grayscale = cv.cvtColor(template, cv.COLOR_BGR2GRAY)
+w, h = template.shape[::-1]
+
+res = cv.matchTemplate(img_grayscale, template, cv.TM_CCOEFF_NORMED)
+threshold = 0.65
+loc = np.where( res >= threshold)
+for pt in zip(*loc[::-1]):
+    cv.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
+
+
 cv.imshow("Start", img)
 
 def get_tile_size_of_img(input_image):
