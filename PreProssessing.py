@@ -22,7 +22,7 @@ def divide_image_into_equal_parts(input_image):
     #print(f"input_image[pointx,pointy is {input_image[pointx,pointy]}")
 
 
-#def GetSmallerArrayFromArray(tileSize, Startingpoint)
+#def GetSmallerArrayFromArray(tileSize, Startingpoint)2
     #arrayOf2DArrays = numpy.array()
 
 get_tile_size_of_img(img)
