@@ -15,20 +15,29 @@ listOfTiles = DivideimageIntoParts.divide_image(blurred) #Divide the image into 
 
 colours = DominantColourFinder.get_list_of_dominant_colours(listOfTiles) # colours of the tiles
 
+<<<<<<< Updated upstream
 one_colour_images = []
 i = 0
 for colour in colours:
     one_colour_images.append(HelperFunctions.create_image_with_colour(colour, i))
     i += 1
 
+=======
+# one_colour_images = []
+# i = 0
+# for colour in colours:
+#     one_colour_images.append(HelperFunctions.create_image_with_colour(colour, i))
+#     i += 1
+
+merged = MergeDominantColourImages.MergeImages(colours)
+cv.imshow("tes", merged)
+>>>>>>> Stashed changes
 stringArray = HelperFunctions.create_empty_string_array()
 
 list_2D_territory_code_strings = [[]]
 
-i = 0
-for image in one_colour_images:
-    territoryString = TerritoryName.get_territory_name(image,i)
-    i += 1
+territories2DMatrix = TerritoryName.get_territory_name_from_colour_list(colours)
+print(territories2DMatrix)
 
 
 
