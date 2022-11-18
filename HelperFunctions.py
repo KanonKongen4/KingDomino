@@ -27,5 +27,3 @@ def create_image_with_colour(color, num):
 def create_empty_string_array():
     strs = [["" for x in range(5)] for y in range(5)]
     return strs
-
-

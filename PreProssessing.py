@@ -4,10 +4,16 @@ import HelperFunctions
 import DivideimageIntoParts
 import PrepareTileForTest
 import TerritoryName
+import MergeDominantColourImages
+import PIL
+from PIL import Image
 
 img = cv.imread("20.jpg")#Read the test image
+imgOpen = Image.open("20.jpg")#Read the test image
 blurred = PrepareTileForTest.blur_image(img) # blur the input image
 cv.imshow("blurred", blurred)# show the input image
+
+print(imgOpen.size)
 
 listOfTiles = DivideimageIntoParts.divide_image(blurred) #Divide the image into 25 tiles
 #HelperFunctions.show_images_in_list(listOfTiles) # Show the divided tiles!
@@ -20,6 +26,8 @@ i = 0
 for colour in colours:
     one_colour_images.append(HelperFunctions.create_image_with_colour(colour, i))
     i += 1
+
+MergeDominantColourImages.MergeImages(imgOpen, colours)
 
 stringArray = HelperFunctions.create_empty_string_array()
 
