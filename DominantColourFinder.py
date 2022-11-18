@@ -16,6 +16,7 @@ def get_dominant_colour(img):
 
 
 def get_list_of_dominant_colours(tile_list):
+    print(tile_list)
     colors = []
     for tile in tile_list:
         colors.append(get_dominant_colour(tile))
