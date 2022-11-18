@@ -1,0 +1,6 @@
+- positition for kronerne
+- thresholding ift. farve for felter
+- konsistete tile farver
+- pointgivning 
+	- sammensatte felter skal findes
+	- antal felter gange kroner = point for territorie

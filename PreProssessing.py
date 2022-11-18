@@ -1,44 +1,35 @@
 import cv2 as cv
-import numpy as np
+import DominantColourFinder
+import HelperFunctions
+import DivideimageIntoParts
+import PrepareTileForTest
+import TerritoryName
 
-img = cv.imread("20.jpg")
-img_grayscale = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-template = cv.imread('crown_upscaled_180_Rotation.png', 0)
-#template_grayscale = cv.cvtColor(template, cv.COLOR_BGR2GRAY)
-w, h = template.shape[::-1]
+img = cv.imread("20.jpg")#Read the test image
+blurred = PrepareTileForTest.blur_image(img) # blur the input image
+cv.imshow("blurred", blurred)# show the input image
 
-res = cv.matchTemplate(img_grayscale, template, cv.TM_CCOEFF_NORMED)
-threshold = 0.65
-loc = np.where( res >= threshold)
-for pt in zip(*loc[::-1]):
-    cv.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
-
-
-cv.imshow("Start", img)
-
-def get_tile_size_of_img(input_image):
-    height = input_image.shape[0]
-    length = input_image.shape[1]
-    print(f"height is {height}, length is {length}")
-
-    size_of_tile = height/5
-    print(f"tileSize is {size_of_tile}")
-    return size_of_tile
-
-def divide_image_into_equal_parts(input_image):
-    h, w, channels = input_image.shape
-    fifth = w//5
-
-    firstPart = input_image[:fifth, :fifth]
-    cv.imshow('Left part', firstPart)
-    #print(f"input_image[pointx,pointy is {input_image[pointx,pointy]}")
+listOfTiles = DivideimageIntoParts.divide_image(blurred) #Divide the image into 25 tiles
+#HelperFunctions.show_images_in_list(listOfTiles) # Show the divided tiles!
 
 
-#def GetSmallerArrayFromArray(tileSize, Startingpoint)2
-    #arrayOf2DArrays = numpy.array()
+colours = DominantColourFinder.get_list_of_dominant_colours(listOfTiles) # colours of the tiles
 
-get_tile_size_of_img(img)
+one_colour_images = []
+i = 0
+for colour in colours:
+    one_colour_images.append(HelperFunctions.create_image_with_colour(colour, i))
+    i += 1
 
-divide_image_into_equal_parts(img)
+stringArray = HelperFunctions.create_empty_string_array()
+
+list_2D_territory_code_strings = [[]]
+
+i = 0
+for image in one_colour_images:
+    territoryString = TerritoryName.get_territory_name(image,i)
+    i += 1
+
+
 
 key = cv.waitKey(0)
