@@ -24,9 +24,8 @@ def get_territory_name(img, id):
         string = "forest"
     elif (check_conditions(color_hsv, col_meadow, 6, 70)):
         string = "meadow"
-    elif (check_conditio
-            ns(color_hsv, col_desert, 6, 25)):
-        string = "desert"
+    elif (check_conditions(color_hsv, col_desert, 6, 25)):
+                    string = "desert"
     elif (check_conditions(color_hsv, col_coal, 6, 25)):
         string = "coal"
     elif (check_conditions(color_hsv, col_corn, 6, 40)):
