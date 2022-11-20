@@ -22,10 +22,6 @@ colours = DominantColourFinder.get_list_of_dominant_colours(listOfTiles) # colou
 merged = MergeDominantColourImages.MergeImages(colours)
 cv.imshow("tes", merged)
 
-stringArray = HelperFunctions.create_empty_string_array()
-
-list_2D_territory_code_strings = [[]]
-
 territories2DMatrix = TerritoryName.get_territory_name_from_colour_list(colours)
 print(territories2DMatrix)
 
