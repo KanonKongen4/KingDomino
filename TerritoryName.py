@@ -47,7 +47,7 @@ def get_territory_name_from_colour_list(listOfColours):
         strings.append(get_territory_name_from_colour(col, i))
         i += 1
 
-    new2DMatrix = numpy.reshape(strings,(5,5,1))
+    new2DMatrix = numpy.reshape(strings,(5,5))
 
     return new2DMatrix
 
