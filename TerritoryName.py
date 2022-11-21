@@ -15,10 +15,10 @@ def get_territory_name_from_colour(color, id):
     # TODO: get the average colours for each tile by getting the average of a number of differently lighted images.
 
     col_water = (100, 0, 180)
-    col_forest = (39, 0, 66)
-    col_meadow = (39, 0, 160)
-    col_desert = (23, 0, 116)
-    col_coal = (23, 0, 70)
+    col_forest = (39, 0, 60)
+    col_meadow = (39, 0, 150)
+    col_desert = (23, 0, 105)
+    col_coal = (23, 0, 50)
     col_corn = (26, 0, 198)
 
     string = "empty"
