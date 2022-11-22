@@ -1,17 +1,17 @@
 import cv2 as cv
 import numpy
 
-crown_left = cv.imread('crownLeft.jpg', 0)
+crown_left = cv.imread('Crowns/LeftCrowns/crownLeft.jpg', 0)
 imgsearch_left_crowns = cv.imread('20.jpg')
 img_gray_left = cv.cvtColor(imgsearch_left_crowns, cv.COLOR_BGRA2GRAY)
 w, h = crown_left.shape[::-1]
 
-crown_right = cv.imread('crownRight.jpg', 0)
+crown_right = cv.imread('Crowns/RightCrowns/crownRight.jpg', 0)
 imgsearch_right_crowns = cv.imread('20.jpg')
 img_gray_right = cv.cvtColor(imgsearch_right_crowns, cv.COLOR_BGRA2GRAY)
 w, h = crown_right.shape[::-1]
 
-crown_down = cv.imread('CrownDown.jpg', 0)
+crown_down = cv.imread('Crowns/DownCrowns/CrownDown.jpg', 0)
 imgsearch_down_crowns = cv.imread('20.jpg')
 img_gray_down = cv.cvtColor(imgsearch_down_crowns, cv.COLOR_BGRA2GRAY)
 w, h = crown_down.shape[::-1]
