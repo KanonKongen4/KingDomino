@@ -13,9 +13,7 @@ cv.imshow("blurred", blurred)# show the input image
 listOfTiles = DivideimageIntoParts.divide_image(blurred) #Divide the image into 25 tiles
 #HelperFunctions.show_images_in_list(listOfTiles) # Show the divided tiles!
 
-
 colours = DominantColourFinder.get_list_of_dominant_colours(listOfTiles) # colours of the tiles
-
 
 merged = MergeDominantColourImages.MergeImages(colours)
 cv.imshow("tes", merged)
