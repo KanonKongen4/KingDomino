@@ -3,3 +3,5 @@
 .idea/misc.xml
 __pycache__/HelperFunctions.cpython-39.pyc
 *.pyc
+.idea/KingDomino.iml
+.idea/misc.xml
