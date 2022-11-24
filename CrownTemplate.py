@@ -56,6 +56,8 @@ def create_crown_amount_matrix(template_positionsX,template_positionY):
     return crown_amount_matrix
 
 
+
+
 image = Find_Crowns_in_Image(img_gray,ex_images_up)
 image = Find_Crowns_in_Image(img_gray,ex_images_right)
 image = Find_Crowns_in_Image(img_gray,ex_images_down)
@@ -68,20 +70,4 @@ print(boxesAfterNMS)
 
 cv.imshow("image", image)
 
-<<<<<<< Updated upstream
-=======
-top_left_points = NonMaximaSuppression.NMS(boxes,0.4)
-
-xs = []
-ys = []
-for point in top_left_points:
-    xs.append(point[0])
-    ys.append(point[1])
-
-
-matrix = create_crown_amount_matrix(xs, ys)
-print("yoooo",matrix)
-
-
->>>>>>> Stashed changes
 cv.waitKey(0)
