@@ -28,7 +28,7 @@ def get_average_colour(list_of_images):
         img = cv.imread(str(img))[:, :, :]
         img_hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
         average = img_hsv.mean(axis=0).mean(axis=0)
-        print(average , "  avg" ,str (list_of_images))
+        #print(average , "  avg" ,str (list_of_images))
 
         list_average_colours.append(average)
 

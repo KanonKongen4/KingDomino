@@ -1,9 +1,7 @@
 from collections import deque
 import numpy as np
 import cv2 as cv
-
-img = cv.imread("shapes.png", cv.IMREAD_GRAYSCALE)
-
+import PreProcessing
 
 '''img = np.array([[0, 0, 0, 255, 255, 255],
                [0, 0, 0, 0, 255, 0],
@@ -24,8 +22,8 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
         current_coordinate = burn_queue.pop()
         y, x = current_coordinate
         if stringMatrix[y, x] == tileTypeString:
-            stringMatrix[y, x] = id
-
+            stringMatrix[y, x] = stringMatrix[y, x] + id
+            print(stringMatrix[y, x])
             if x + 1 < stringMatrix.shape[1] and stringMatrix[y, x + 1] == tileTypeString:
                 burn_queue.append((y, x + 1))
             if y + 1 < stringMatrix.shape[0] and stringMatrix[y + 1, x] == tileTypeString:
@@ -45,17 +43,23 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
     return id
 
 
-def grassfire(image):
+def grassfire(tileStringMatrix):
     next_id = 1
-    for y, row in enumerate(image):
+    for y, row in enumerate(tileStringMatrix):
         for x, pixel in enumerate(row):
-            next_id = ignite_pixel(image, (y, x), next_id)
+            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="water")
+            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="forest")
+            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="meadow")
+            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="desert")
+            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="coal")
+            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="corn")
 
 
 
 
-grassfire(img)
+newTileStringMatrix = grassfire(tileStringMatrix=PreProcessing.territories2DMatrix)
 
 #print(img)
-cv.imshow("Output", img)
+#print(newTileStringMatrix)
+#cv.imshow("Output", img)
 cv.waitKey()
