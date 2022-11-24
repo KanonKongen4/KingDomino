@@ -43,6 +43,7 @@ def Find_Crowns_in_Image(gray_image, listOfExampleCrowns):
 
     return imgsearch
 
+<<<<<<< Updated upstream
 
 def create_crown_amount_matrix(template_positionsX,template_positionY):
     crown_amount_matrix = numpy.zeros((5, 5))
@@ -51,6 +52,18 @@ def create_crown_amount_matrix(template_positionsX,template_positionY):
         column = template_positionsX[i] / 100
         column = int(column) #Converter til int for at skærer decimalet væk
         row = template_positionY[i] / 100
+=======
+def Crown_code():
+    xs = [5, 233, 433, 233, 167]
+    ys = [201, 422, 22, 322, 455]
+    matrix = Make_Crown_Matrix(xs, ys)
+    print(matrix)
+
+def Make_Crown_Matrix(postitionX, positionY):
+    crown_matrix = numpy.zeroes((5, 5))
+    for i in range(len(postitionX)):
+        row = postitionX[i] / 100
+>>>>>>> Stashed changes
         row = int(row)
         crown_amount_matrix[row,column] += 1
     return crown_amount_matrix
@@ -70,19 +83,22 @@ print(boxesAfterNMS)
 
 cv.imshow("image", image)
 
-<<<<<<< Updated upstream
-top_left_points = NonMaximaSuppression.NMS(boxes,0.4)
-
-xs = []
-ys = []
-for point in top_left_points:
-    xs.append(point[0])
-    ys.append(point[1])
-
-
-matrix = create_crown_amount_matrix(xs, ys)
-print("yoooo",matrix)
-=======
->>>>>>> Stashed changes
+# <<<<<<< Updated upstream
+# <<<<<<< Updated upstream
+# top_left_points = NonMaximaSuppression.NMS(boxes,0.4)
+#
+# xs = []
+# ys = []
+# for point in top_left_points:
+#     xs.append(point[0])
+#     ys.append(point[1])
+#
+#
+# matrix = create_crown_amount_matrix(xs, ys)
+# print("yoooo",matrix)
+# =======
+# >>>>>>> Stashed changes
+# =======
+# >>>>>>> Stashed changes
 
 cv.waitKey(0)

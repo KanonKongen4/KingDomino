@@ -33,9 +33,12 @@ def coord_is_within_range(coord1, coordList):
 def NMS(boxes, overlapThresh):  # TODO: started writing own NMS but its kinda hard to do:-O!!!
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     # outputMatrix = numpy.zeros((5, 5), dtype=int)
     # print(outputMatrix)
 =======
+=======
+>>>>>>> Stashed changes
     outputMatrix = np.zeros((5, 5), dtype=int)
     print(outputMatrix)
 >>>>>>> Stashed changes
@@ -125,4 +128,7 @@ def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
 
     # return only the bounding boxes that were picked
     return boxes[pick].astype("int")
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
