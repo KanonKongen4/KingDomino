@@ -5,12 +5,12 @@
 #     ['coal2', 'coal2', 'meadow1', 'meadow1', 'corn2'],
 #     ['corn3', 'corn3', 'desert3', 'desert3', 'meadow2']]
 
-# exampleCrowns = [
-#     [0, 0, 0, 2, 0],
-#     [1, 1, 0, 0, 0],
-#     [2, 0, 0, 0, 0],
-#     [2, 3, 0, 0, 1],
-#     [0, 0, 0, 0, 0]]
+exampleCrowns = [
+    [0, 0, 0, 2, 0],
+    [1, 1, 0, 0, 0],
+    [2, 0, 0, 0, 0],
+    [2, 3, 0, 0, 1],
+    [0, 0, 0, 0, 0]]
 
 
 def GetDifferentTerritoryNames(inputMatrix):
@@ -39,11 +39,11 @@ def GetListOfConnectedTilesCount(matrixToSearch, namesList):
     return listToReturn
 
 
-def GetCrownsForEachTerritory(differentNamesList, crownMatrix):
+def GetCrownsForEachTerritory(differentNamesList, territoryMatrix, crownMatrix):
     listOfCrownValues = []
     for name in differentNamesList:
         crownCount = 0
-        for i, y in enumerate(crownMatrix): #HHHHMMM
+        for i, y in enumerate(territoryMatrix):
             for j, x in enumerate(y):
                 if x == name:
                     if(crownMatrix[i][j] != 0):
@@ -58,16 +58,13 @@ def GetPointsFromTerritoriesMultipliedByCrowns(inputTerritoryMatrix, crownMatrix
     territoryNames = GetDifferentTerritoryNames(inputTerritoryMatrix)
 
     tilesCount = GetListOfConnectedTilesCount(inputTerritoryMatrix, territoryNames)
-    print("tilesCount is: ", tilesCount)
 
-    crownCount = GetCrownsForEachTerritory(territoryNames, crownMatrix)
-    print("crownCount is: ", crownCount)
+    crownCount = GetCrownsForEachTerritory(territoryNames, inputTerritoryMatrix, crownMatrix)
 
     points = 0
     for i, entry in enumerate(tilesCount):
         points += tilesCount[i] * crownCount[i]
 
-    print("points", points)
     return points
 
 # for name in GetDifferentTerritoryNames(example):

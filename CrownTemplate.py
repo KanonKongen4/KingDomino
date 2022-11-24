@@ -25,7 +25,8 @@ img_gray = cv.cvtColor(imgsearch, cv.COLOR_BGRA2GRAY)
 
 DEFAULT_THRESHOLD = 0.8
 boxes = list()
-def Find_Crowns_in_Image(gray_image, listOfExampleCrowns):
+def Find_Crowns_in_Image(inputImage, listOfExampleCrowns):
+    gray_image = cv.cvtColor(inputImage, cv.COLOR_BGR2GRAY) #
     for crown_image in listOfExampleCrowns: # Loop over every image in the list
         img = cv.imread(str(crown_image))[:, :, :] # Read the image
         gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY) # convert crown example image to grayscale
@@ -41,7 +42,7 @@ def Find_Crowns_in_Image(gray_image, listOfExampleCrowns):
             y2 = point[1] + h
             boxes.append((x1, y1, x2, y2))
 
-    return imgsearch
+    return boxes
 
 def create_crown_amount_matrix(template_positionsX,template_positionY):
     crown_amount_matrix = numpy.zeros((5, 5))
@@ -98,18 +99,24 @@ def draw_box_coordinates(img,boxes):
     #cv2.waitKey(0)
     return newImage
 
+def GetXsYsFromBoxes(boxes):
 
-image = Find_Crowns_in_Image(img_gray,ex_images_up)
-image = Find_Crowns_in_Image(img_gray,ex_images_right)
-image = Find_Crowns_in_Image(img_gray,ex_images_down)
-image = Find_Crowns_in_Image(img_gray,ex_images_left)
+    xs = []
+    ys = []
+    for x in boxes:
+        #print(f"x:{x}")
+        xs.append(int(x[1]))
+        ys.append(int(x[0]))
+
+    return xs,ys
+
+def GetAllCrowns(inputImage):
+
+    image = Find_Crowns_in_Image(inputImage,ex_images_up)
+    image = Find_Crowns_in_Image(inputImage,ex_images_right)
+    image = Find_Crowns_in_Image(inputImage,ex_images_down)
+    image = Find_Crowns_in_Image(inputImage,ex_images_left)
+    return boxes
 
 
-boxesAfterNMS = NonMaximaSuppression.non_max_suppression(boxes)
 
-listOfCenterCoord = get_approx_box_center(boxesAfterNMS)
-imageTemplateBoxes = draw_box_coordinates(imgsearch, listOfCenterCoord)
-
-print(boxesAfterNMS)
-
-cv.imshow("image", imageTemplateBoxes)

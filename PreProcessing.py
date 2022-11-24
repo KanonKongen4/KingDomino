@@ -1,8 +1,12 @@
 import cv2 as cv
+
+import CrownTemplate
 import DominantColourFinder
 import HelperFunctions
 import DivideimageIntoParts
 import MergeDominantColourImages
+import NonMaximaSuppression
+import PointsCounter
 import PrepareTileForTest
 import TerritoryName
 import grassfire
@@ -19,12 +23,28 @@ colours = DominantColourFinder.get_list_of_dominant_colours(listOfTiles)  # Gett
 # print("colours", colours)
 merged = MergeDominantColourImages.MergeImages(colours)  # Merge the dominant colours into an image
 cv.imshow("tes", merged)
-
+print("hello")
 territories2DMatrix = TerritoryName.get_territory_name_from_colour_list(colours)
 print(territories2DMatrix)
 
 territoriesSegmented = grassfire.GetNewMatrixWithID(territories2DMatrix)
 
+
 print("territoriesSegmented", territoriesSegmented)
 
+allCrownPositions = CrownTemplate.GetAllCrowns(img)
+print("allCrownPositions", allCrownPositions)
+
+crownPositions = NonMaximaSuppression.non_max_suppression(allCrownPositions)
+print("positions", crownPositions)
+
+xs, ys = CrownTemplate.GetXsYsFromBoxes(crownPositions)
+
+print("xs, ys", xs, ys)
+crownMatrixFinished = CrownTemplate.Make_Crown_Matrix(xs,ys)
+print("crownMatrixFinished", crownMatrixFinished)
+
+points = PointsCounter.GetPointsFromTerritoriesMultipliedByCrowns(territoriesSegmented,crownMatrixFinished)
+
+print("points", points)
 cv.waitkey(0)
