@@ -70,19 +70,4 @@ print(boxesAfterNMS)
 
 cv.imshow("image", image)
 
-<<<<<<< Updated upstream
-top_left_points = NonMaximaSuppression.NMS(boxes,0.4)
-
-xs = []
-ys = []
-for point in top_left_points:
-    xs.append(point[0])
-    ys.append(point[1])
-
-
-matrix = create_crown_amount_matrix(xs, ys)
-print("yoooo",matrix)
-=======
->>>>>>> Stashed changes
-
 cv.waitKey(0)
