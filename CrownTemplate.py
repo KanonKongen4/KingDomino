@@ -39,9 +39,24 @@ def Find_Crowns_in_Image(gray_image, listOfExampleCrowns):
             y1 = point[1]
             x2 = point[0] + w
             y2 = point[1] + h
-
             boxes.append((x1, y1, x2, y2))
     return  imgsearch
+
+def Crown_code():
+    xs = [5, 233, 433, 233, 167]
+    ys = [201, 422, 22, 322, 455]
+    matrix = Make_Crown_Matrix(xs, ys)
+    print(matrix)
+
+def Make_Crown_Matrix(postitionX, positionY):
+    crown_matrix = numpy.zeroes((5, 5))
+    for i in range(len(postitionX)):
+        row = postitionX[i] / 100
+        row = int(row)
+        colum = positionY[1] / 100
+        colum = int(colum)
+        crown_matrix[colum, row] +=1
+        return crown_matrix
 
 image = Find_Crowns_in_Image(img_gray,ex_images_up)
 image = Find_Crowns_in_Image(img_gray,ex_images_right)
