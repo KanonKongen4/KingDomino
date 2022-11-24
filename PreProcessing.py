@@ -47,4 +47,4 @@ print("crownMatrixFinished", crownMatrixFinished)
 points = PointsCounter.GetPointsFromTerritoriesMultipliedByCrowns(territoriesSegmented,crownMatrixFinished)
 
 print("points", points)
-cv.waitkey(0)
+cv.waitKey(0)
