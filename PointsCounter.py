@@ -60,7 +60,7 @@ def GetPointsFromTerritoriesMultipliedByCrowns(inputTerritoryMatrix, crownMatrix
     tilesCount = GetListOfConnectedTilesCount(inputTerritoryMatrix, territoryNames)
 
     crownCount = GetCrownsForEachTerritory(territoryNames, inputTerritoryMatrix, crownMatrix)
-
+    print("crownCount",crownCount)
     points = 0
     for i, entry in enumerate(tilesCount):
         points += tilesCount[i] * crownCount[i]

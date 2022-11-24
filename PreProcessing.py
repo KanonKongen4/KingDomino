@@ -11,7 +11,7 @@ import PrepareTileForTest
 import TerritoryName
 import grassfire
 
-img = cv.imread("2.jpg")  # Read the test image
+img = cv.imread("20.jpg")  # Read the test image
 blurred = PrepareTileForTest.blur_image(img)  # blur the input image
 cv.imshow("start", img)  # show the input image
 cv.imshow("blurred", blurred)  # show the blurred input image
@@ -41,7 +41,7 @@ print("positions", crownPositions)
 xs, ys = CrownTemplate.GetXsYsFromBoxes(crownPositions)
 
 print("xs, ys", xs, ys)
-crownMatrixFinished = CrownTemplate.Make_Crown_Matrix(xs,ys)
+crownMatrixFinished = CrownTemplate.Make_Crown_Matrix(ys,xs)
 print("crownMatrixFinished", crownMatrixFinished)
 
 points = PointsCounter.GetPointsFromTerritoriesMultipliedByCrowns(territoriesSegmented,crownMatrixFinished)
