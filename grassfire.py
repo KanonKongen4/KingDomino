@@ -1,14 +1,9 @@
 from collections import deque
+
+import numpy
 import numpy as np
 import cv2 as cv
 import PreProcessing
-
-'''img = np.array([[0, 0, 0, 255, 255, 255],
-               [0, 0, 0, 0, 255, 0],
-               [0, 0, 0, 0, 255, 0],
-               [0, 0, 255, 255, 0, 0],
-               [0, 0, 255, 255, 0, 0],
-               [0, 0, 255, 255, 0, 0]], dtype=np.uint8)'''
 
 
 def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
@@ -32,6 +27,7 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
                 burn_queue.append((y, x - 1))
             if y - 1 >= 0 and stringMatrix[y - 1, x] == tileTypeString:
                 burn_queue.append((y - 1, x))
+        else: print("fuuuck!")
 
         # print(stringMatrix)
         # print(burn_queue)
@@ -48,18 +44,20 @@ def grassfire(tileStringMatrix, territoryName):
     for y, row in enumerate(tileStringMatrix):
         for x, pixel in enumerate(row):
             next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, territoryName)
+    return tileStringMatrix
 
 newMatrix = PreProcessing.territories2DMatrix
+# print("newMatrix", newMatrix)
 
-print("newMatrix", newMatrix)
-newTileStringMatrix = grassfire(newMatrix, "corn")
-newTileStringMatrix = grassfire(newMatrix, "coal")
-newTileStringMatrix = grassfire(newMatrix, "forest")
+newMatrix = grassfire(PreProcessing.territories2DMatrix, "corn")
+newMatrix = grassfire(PreProcessing.territories2DMatrix, "coal")
+newMatrix = grassfire(PreProcessing.territories2DMatrix, "tree")
 
-print("PreProcessing.territories2DMatrix", PreProcessing.territories2DMatrix)
+newMatrix = grassfire(PreProcessing.territories2DMatrix, "mead")
+newMatrix = grassfire(PreProcessing.territories2DMatrix, "desert")
+newMatrix = grassfire(PreProcessing.territories2DMatrix, "water")
 
-
-print("yoooo", newTileStringMatrix)
+print("newTafdf", newMatrix)
 # print(img)
 # print(newTileStringMatrix)
 # cv.imshow("Output", img)

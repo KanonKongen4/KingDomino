@@ -29,9 +29,9 @@ def get_territory_name_from_colour(color, id):
     if (check_conditions(hsv, col_water, 10, 80, 70)):
         string = "water"
     elif (check_conditions(hsv, col_forest, 6, 50, 70)):
-        string = "forest"
+        string = "tree"
     elif (check_conditions(hsv, col_meadow, 6, 50, 70)):
-        string = "meadow"
+        string = "mead"
     elif (check_conditions(hsv, col_desert, 6, 50, 40)):
         string = "desert"
     elif (check_conditions(hsv, col_coal, 30, 50, 80)):
@@ -50,9 +50,14 @@ def get_territory_name_from_colour_list(listOfColours):
         strings.append(get_territory_name_from_colour(col, i))
         i += 1
 
-    new2DMatrix = numpy.reshape(strings,(5,5))
 
-    return new2DMatrix
+
+    # print(new2DMatrix)
+    new2DMatrix = numpy.reshape(strings,(5,5))
+    betterMatrix = new2DMatrix.astype('U10')
+
+
+    return betterMatrix
 
 
 def check_conditions(input_color, color_to_find, range_hue, range_saturation, range_value):
