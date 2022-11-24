@@ -22,7 +22,7 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
         current_coordinate = burn_queue.pop()
         y, x = current_coordinate
         if stringMatrix[y, x] == tileTypeString:
-            stringMatrix[y, x] = stringMatrix[y, x] + id
+            stringMatrix[y, x] = stringMatrix[y, x] + str(id)
             print(stringMatrix[y, x])
             if x + 1 < stringMatrix.shape[1] and stringMatrix[y, x + 1] == tileTypeString:
                 burn_queue.append((y, x + 1))
@@ -33,9 +33,9 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
             if y - 1 >= 0 and stringMatrix[y - 1, x] == tileTypeString:
                 burn_queue.append((y - 1, x))
 
-        #print(stringMatrix)
-        #print(burn_queue)
-        #input()
+        # print(stringMatrix)
+        # print(burn_queue)
+        # input()
 
         if len(burn_queue) == 0:
             return id + 1
@@ -43,23 +43,24 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
     return id
 
 
-def grassfire(tileStringMatrix):
+def grassfire(tileStringMatrix, territoryName):
     next_id = 1
     for y, row in enumerate(tileStringMatrix):
         for x, pixel in enumerate(row):
-            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="water")
-            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="forest")
-            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="meadow")
-            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="desert")
-            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="coal")
-            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, tileTypeString="corn")
+            next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, territoryName)
+
+newMatrix = PreProcessing.territories2DMatrix
+
+print("newMatrix", newMatrix)
+newTileStringMatrix = grassfire(newMatrix, "corn")
+newTileStringMatrix = grassfire(newMatrix, "coal")
+newTileStringMatrix = grassfire(newMatrix, "forest")
+
+print("PreProcessing.territories2DMatrix", PreProcessing.territories2DMatrix)
 
 
-
-
-newTileStringMatrix = grassfire(tileStringMatrix=PreProcessing.territories2DMatrix)
-
-#print(img)
-#print(newTileStringMatrix)
-#cv.imshow("Output", img)
+print("yoooo", newTileStringMatrix)
+# print(img)
+# print(newTileStringMatrix)
+# cv.imshow("Output", img)
 cv.waitKey()

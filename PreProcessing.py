@@ -22,4 +22,4 @@ cv.imshow("tes", merged)
 territories2DMatrix = TerritoryName.get_territory_name_from_colour_list(colours)
 print(territories2DMatrix)
 
-key = cv.waitKey(0)
+
