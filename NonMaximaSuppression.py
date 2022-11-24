@@ -32,8 +32,8 @@ def coord_is_within_range(coord1, coordList):
 
 def NMS(boxes, overlapThresh):  # TODO: started writing own NMS but its kinda hard to do:-O!!!
 
-    outputMatrix = numpy.zeros((5, 5), dtype=int)
-    print(outputMatrix)
+    # outputMatrix = numpy.zeros((5, 5), dtype=int)
+    # print(outputMatrix)
 
     topLeftCoordinates = []
 
@@ -52,4 +52,4 @@ def NMS(boxes, overlapThresh):  # TODO: started writing own NMS but its kinda ha
             newList.remove(coord)
 
     print(newList)
-    return boxes
+    return topLeftCoordinates

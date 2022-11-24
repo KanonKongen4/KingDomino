@@ -42,21 +42,20 @@ def Find_Crowns_in_Image(gray_image, listOfExampleCrowns):
             boxes.append((x1, y1, x2, y2))
     return  imgsearch
 
-def Crown_code():
-    xs = [5, 233, 433, 233, 167]
-    ys = [201, 422, 22, 322, 455]
-    matrix = Make_Crown_Matrix(xs, ys)
-    print(matrix)
 
-def Make_Crown_Matrix(postitionX, positionY):
-    crown_matrix = numpy.zeroes((5, 5))
-    for i in range(len(postitionX)):
-        row = postitionX[i] / 100
+def create_crown_amount_matrix(template_positionsX,template_positionY):
+    crown_amount_matrix = numpy.zeros((5, 5))
+    for i in range(len(template_positionsX)):
+        #Hvor mange gange går X positionen op i 100, hvis 0 gange, så er column = 0, 1 gang = column 1 osv
+        column = template_positionsX[i] / 100
+        column = int(column) #Converter til int for at skærer decimalet væk
+        row = template_positionY[i] / 100
         row = int(row)
-        colum = positionY[1] / 100
-        colum = int(colum)
-        crown_matrix[colum, row] +=1
-        return crown_matrix
+        crown_amount_matrix[row,column] += 1
+    return crown_amount_matrix
+
+
+
 
 image = Find_Crowns_in_Image(img_gray,ex_images_up)
 image = Find_Crowns_in_Image(img_gray,ex_images_right)
@@ -65,5 +64,16 @@ image = Find_Crowns_in_Image(img_gray,ex_images_left)
 
 cv.imshow("image", image)
 
-NonMaximaSuppression.NMS(boxes,0.4)
+top_left_points = NonMaximaSuppression.NMS(boxes,0.4)
+
+xs = []
+ys = []
+for point in top_left_points:
+    xs.append(point[0])
+    ys.append(point[1])
+
+
+matrix = create_crown_amount_matrix(xs, ys)
+print("yoooo",matrix)
+
 cv.waitKey(0)

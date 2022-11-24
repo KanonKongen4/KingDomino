@@ -55,8 +55,6 @@ def get_territory_name_from_colour_list(listOfColours):
     return new2DMatrix
 
 
-
-
 def check_conditions(input_color, color_to_find, range_hue, range_saturation, range_value):
     hue = input_color[0]
     sat = input_color[1]

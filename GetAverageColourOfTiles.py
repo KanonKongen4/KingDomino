@@ -22,8 +22,6 @@ images_meadow = list(input_dir_meadow.glob('*.jpg'))
 images_water = list(input_dir_water.glob('*.jpg'))
 
 
-img = cv.imread(str(images_coal[0]))
-cv.imshow("coal", img)
 def get_average_colour(list_of_images):
     list_average_colours = []
     for img in list_of_images:

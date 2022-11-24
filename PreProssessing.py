@@ -15,7 +15,7 @@ listOfTiles = DivideimageIntoParts.divide_image(blurred) #Divide the image into 
 
 colours = DominantColourFinder.get_list_of_dominant_colours(listOfTiles) # Getting the dominant colour of the tiles
 
-print("colours", colours)
+# print("colours", colours)
 merged = MergeDominantColourImages.MergeImages(colours) # Merge the dominant colours into an image
 cv.imshow("tes", merged)
 
