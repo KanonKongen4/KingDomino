@@ -113,5 +113,3 @@ imageTemplateBoxes = draw_box_coordinates(imgsearch, listOfCenterCoord)
 print(boxesAfterNMS)
 
 cv.imshow("image", imageTemplateBoxes)
-
-cv.waitKey(0)

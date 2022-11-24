@@ -3,7 +3,6 @@ from collections import deque
 import numpy
 import numpy as np
 import cv2 as cv
-import PreProcessing
 
 
 def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
@@ -46,19 +45,16 @@ def grassfire(tileStringMatrix, territoryName):
             next_id = ignite_pixel(tileStringMatrix, (y, x), next_id, territoryName)
     return tileStringMatrix
 
-newMatrix = PreProcessing.territories2DMatrix
-# print("newMatrix", newMatrix)
 
-newMatrix = grassfire(PreProcessing.territories2DMatrix, "corn")
-newMatrix = grassfire(PreProcessing.territories2DMatrix, "coal")
-newMatrix = grassfire(PreProcessing.territories2DMatrix, "tree")
+def GetNewMatrixWithID(oldMatrix):
+    newMatrix = oldMatrix
 
-newMatrix = grassfire(PreProcessing.territories2DMatrix, "mead")
-newMatrix = grassfire(PreProcessing.territories2DMatrix, "desert")
-newMatrix = grassfire(PreProcessing.territories2DMatrix, "water")
+    newMatrix = grassfire(oldMatrix, "corn")
+    newMatrix = grassfire(oldMatrix, "coal")
+    newMatrix = grassfire(oldMatrix, "tree")
 
-print("newTafdf", newMatrix)
-# print(img)
-# print(newTileStringMatrix)
-# cv.imshow("Output", img)
-cv.waitKey()
+    newMatrix = grassfire(oldMatrix, "mead")
+    newMatrix = grassfire(oldMatrix, "desert")
+    newMatrix = grassfire(oldMatrix, "water")
+
+    return newMatrix
