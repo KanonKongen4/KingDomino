@@ -33,7 +33,7 @@ def Find_Crowns_in_Image(gray_image, listOfExampleCrowns):
         result = cv.matchTemplate(gray_image, gray, cv.TM_CCOEFF_NORMED) #??
         loc = numpy.where(result >= DEFAULT_THRESHOLD) # numpy.where loops over the image and checks if result > threshold
         for point in zip(*loc[::-1]): #??
-            cv.rectangle(imgsearch, point, (point[0] + w, point[1] + h), (0, 0, 225), 2) # Draw rectangle at top-left point of match
+            #cv.rectangle(imgsearch, point, (point[0] + w, point[1] + h), (0, 0, 225), 2) # Draw rectangle at top-left point of match
 
             x1 = point[0]
             y1 = point[1]
@@ -43,8 +43,6 @@ def Find_Crowns_in_Image(gray_image, listOfExampleCrowns):
 
     return imgsearch
 
-<<<<<<< Updated upstream
-
 def create_crown_amount_matrix(template_positionsX,template_positionY):
     crown_amount_matrix = numpy.zeros((5, 5))
     for i in range(len(template_positionsX)):
@@ -52,23 +50,53 @@ def create_crown_amount_matrix(template_positionsX,template_positionY):
         column = template_positionsX[i] / 100
         column = int(column) #Converter til int for at skærer decimalet væk
         row = template_positionY[i] / 100
-=======
+
 def Crown_code():
     xs = [5, 233, 433, 233, 167]
     ys = [201, 422, 22, 322, 455]
     matrix = Make_Crown_Matrix(xs, ys)
     print(matrix)
 
-def Make_Crown_Matrix(postitionX, positionY):
-    crown_matrix = numpy.zeroes((5, 5))
-    for i in range(len(postitionX)):
-        row = postitionX[i] / 100
->>>>>>> Stashed changes
+def Make_Crown_Matrix(template_positionsX,template_positionY):
+    crown_amount_matrix = numpy.zeros((5, 5))
+    for i in range(len(template_positionsX)):
+        #Hvor mange gange går X positionen op i 100, hvis 0 gange, så er column = 0, 1 gang = column 1 osv
+        column = template_positionsX[i] / 100
+        column = int(column) #Converter til int for at skærer decimalet væk
+        row = template_positionY[i] / 100
         row = int(row)
         crown_amount_matrix[row,column] += 1
     return crown_amount_matrix
 
+def get_approx_box_center(boxes):
+    newBoxes = numpy.zeros(boxes.shape)
 
+    for i in range(len(boxes)):
+        newBoxes[i,0] = boxes[i,2] - 15 # 30 er cirka template width, så ved at minus med halvdelen får vi centret
+        newBoxes[i,1] = boxes[i,3] - 15 # 30 er cirka også template height, så her minuser vi også med halvdelen
+
+    #Slicer så vi kun har 2 columns - 1 for x og 1 for y
+    newBoxes = newBoxes[:,:2]
+    #print(newBoxes)
+
+
+    #newBoxes[i, 0] = np.maximum(boxes[i, 0], boxes[i, 2])
+    #newBoxes[i, 2] = np.minimum(boxes[i, 0], boxes[i, 2])
+    #newBoxes[i, 0] = newBoxes[i, 0] - newBoxes[i, 2]
+    return newBoxes
+
+def draw_box_coordinates(img,boxes):
+    newImage = numpy.zeros(img.shape)
+    #print(boxes.shape)
+
+    for x in boxes:
+        #print(f"x:{x}")
+        newImage[int(x[1]),int(x[0])] = 1
+
+
+    #cv2.imshow("newImage",newImage)
+    #cv2.waitKey(0)
+    return newImage
 
 
 image = Find_Crowns_in_Image(img_gray,ex_images_up)
@@ -79,26 +107,11 @@ image = Find_Crowns_in_Image(img_gray,ex_images_left)
 
 boxesAfterNMS = NonMaximaSuppression.non_max_suppression(boxes)
 
+listOfCenterCoord = get_approx_box_center(boxesAfterNMS)
+imageTemplateBoxes = draw_box_coordinates(imgsearch, listOfCenterCoord)
+
 print(boxesAfterNMS)
 
-cv.imshow("image", image)
-
-# <<<<<<< Updated upstream
-# <<<<<<< Updated upstream
-# top_left_points = NonMaximaSuppression.NMS(boxes,0.4)
-#
-# xs = []
-# ys = []
-# for point in top_left_points:
-#     xs.append(point[0])
-#     ys.append(point[1])
-#
-#
-# matrix = create_crown_amount_matrix(xs, ys)
-# print("yoooo",matrix)
-# =======
-# >>>>>>> Stashed changes
-# =======
-# >>>>>>> Stashed changes
+cv.imshow("image", imageTemplateBoxes)
 
 cv.waitKey(0)
