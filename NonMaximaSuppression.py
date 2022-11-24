@@ -1,5 +1,6 @@
 import numpy as np
 
+<<<<<<< Updated upstream
 def NMS(boxes, overlapThresh):  # TODO: started writing own NMS but its kinda hard to do:-O!!!
 
     outputMatrix = np.zeros((5, 5), dtype=int)
@@ -22,6 +23,8 @@ def NMS(boxes, overlapThresh):  # TODO: started writing own NMS but its kinda ha
         if coord_is_within_range(coord, boundingBoxesCoords):
             newList.remove(coord)
 
+=======
+>>>>>>> Stashed changes
 def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
     # if there are no boxes, return an empty list
     boxesNp = np.array(boxes)
@@ -84,4 +87,8 @@ def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
         idxs = np.delete(idxs, np.concatenate(([last], np.where(overlap > overlapThresh)[0])))
 
     # return only the bounding boxes that were picked
+<<<<<<< Updated upstream
     return boxes[pick].astype("int")
+=======
+    return boxes[pick].astype("int")
+>>>>>>> Stashed changes
