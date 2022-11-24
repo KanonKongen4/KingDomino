@@ -48,5 +48,7 @@ image = Find_Crowns_in_Image(img_gray,ex_images_right)
 image = Find_Crowns_in_Image(img_gray,ex_images_down)
 image = Find_Crowns_in_Image(img_gray,ex_images_left)
 
+cv.imshow("image", image)
+
 NonMaximaSuppression.NMS(boxes,0.4)
 cv.waitKey(0)
