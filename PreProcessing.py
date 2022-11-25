@@ -1,3 +1,4 @@
+import random
 import cv2 as cv
 
 import CrownTemplate
@@ -9,15 +10,17 @@ import PointsCounter
 import PrepareTileForTest
 import TerritoryName
 import grassfire
+import GetAverageColourOfTiles
 
-img = cv.imread("20.jpg")  # Read the test image
+img = cv.imread("TestImages\example (3).jpg")  # Read the test image
 blurred = PrepareTileForTest.blur_image(img)  # blur the input image
-cv.imshow("start", img)  # show the input image
-cv.imshow("blurred", blurred)  # show the blurred input image
 
 listOfTiles = DivideimageIntoParts.divide_image(blurred)  # Divide the image into 25 tiles
 
 colours = DominantColourFinder.get_list_of_dominant_colours(listOfTiles)  # Getting the dominant colour of the tiles
+
+for col in colours:
+    GetAverageColourOfTiles.create_image_with_colour(col, random.Random(10000))
 
 # print("colours", colours)
 merged = MergeDominantColourImages.MergeImages(colours)  # Merge the dominant colours into an image
@@ -42,4 +45,7 @@ print("crownMatrixFinished \n", crownMatrixFinished)
 points = PointsCounter.GetPointsFromTerritoriesMultipliedByCrowns(territoriesSegmented,crownMatrixFinished)
 
 print("points", points)
+
+cv.imshow("start", img)  # show the input image
+
 cv.waitKey(0)

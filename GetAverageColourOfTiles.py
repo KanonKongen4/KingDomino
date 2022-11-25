@@ -47,7 +47,7 @@ def combine_colours(list_of_colours):
     average_v = sum_v / len(list_of_colours)
 
     color = (average_h, average_s, average_v)
-    #create_image_with_colour(color, random.Random(10000)) for debug
+
     return color
 
 

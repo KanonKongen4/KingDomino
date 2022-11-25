@@ -24,16 +24,19 @@ def get_territory_name_from_colour(color, id):
 
     if (check_conditions(hsv, col_water, 10, 80, 70)):
         string = "water"
-    elif (check_conditions(hsv, col_forest, 6, 50, 70)):
-        string = "forest"
-    elif (check_conditions(hsv, col_meadow, 6, 50, 70)):
-        string = "meadow"
-    elif (check_conditions(hsv, col_desert, 6, 50, 40)):
-        string = "desert"
-    elif (check_conditions(hsv, col_coal, 30, 50, 80)):
-        string = "coal"
     elif (check_conditions(hsv, col_corn, 6, 50, 40)):
         string = "corn"
+    elif (check_conditions(hsv, col_forest, 13, 51, 65)):
+        string = "forest"
+    elif (check_conditions(hsv, col_meadow, 6, 50, 60)):
+        string = "meadow"
+    elif (check_conditions(hsv, col_desert, 6, 55, 45)):
+        string = "desert"
+    elif (check_conditions(hsv, col_coal, 37, 72, 72)):
+        string = "coal"
+
+
+
 
 
     return string
