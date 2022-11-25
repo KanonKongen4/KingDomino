@@ -1,8 +1,5 @@
-import numpy
 import numpy as np
 
-import DominantColourFinder
-import cv2 as cv
 from PIL import Image
 
 img = Image.open("20.jpg")

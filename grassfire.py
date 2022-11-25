@@ -1,9 +1,5 @@
 from collections import deque
 
-import numpy
-import numpy as np
-import cv2 as cv
-
 
 def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
     y, x = coordinate
@@ -28,9 +24,7 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
                 burn_queue.append((y - 1, x))
         else: print("fuuuck!")
 
-        # print(stringMatrix)
-        # print(burn_queue)
-        # input()
+
 
         if len(burn_queue) == 0:
             return id + 1

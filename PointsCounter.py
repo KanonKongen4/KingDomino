@@ -1,9 +1,3 @@
-# example = [
-#     ['corn1', 'desert1', 'corn2', 'coal1', 'desert2'],
-#     ['coal2', 'desert1', 'corn2', 'corn2', 'forest'],
-#     ['coal2', 'desert1', 'empty', 'corn2', 'corn2'],
-#     ['coal2', 'coal2', 'meadow1', 'meadow1', 'corn2'],
-#     ['corn3', 'corn3', 'desert3', 'desert3', 'meadow2']]
 
 exampleCrowns = [
     [0, 0, 0, 2, 0],
@@ -67,8 +61,4 @@ def GetPointsFromTerritoriesMultipliedByCrowns(inputTerritoryMatrix, crownMatrix
 
     return points
 
-# for name in GetDifferentTerritoryNames(example):
-#     points += FindNumberOfTilesWithID(example, name)
-#
-# print("points is: ", points)
 

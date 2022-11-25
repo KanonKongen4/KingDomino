@@ -1,7 +1,5 @@
 import random
-import time
 from pathlib import Path
-from numpy import savetxt, loadtxt
 import numpy as np
 import cv2 as cv
 

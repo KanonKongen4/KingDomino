@@ -1,8 +1,6 @@
 from pathlib import Path
-import math
 import cv2 as cv
 import numpy
-import NonMaximaSuppression
 
 #Importing the different crown template images.
 input_dir_up = Path.cwd() / "crownImages/up"  # Path.cwd finds current working directory(where this file is run) and a folder name
@@ -43,20 +41,6 @@ def Find_Crowns_in_Image(inputImage, listOfExampleCrowns):
             boxes.append((x1, y1, x2, y2))
 
     return boxes
-
-def create_crown_amount_matrix(template_positionsX,template_positionY):
-    crown_amount_matrix = numpy.zeros((5, 5))
-    for i in range(len(template_positionsX)):
-        #Hvor mange gange går X positionen op i 100, hvis 0 gange, så er column = 0, 1 gang = column 1 osv
-        column = template_positionsX[i] / 100
-        column = int(column) #Converter til int for at skærer decimalet væk
-        row = template_positionY[i] / 100
-
-def Crown_code():
-    xs = [5, 233, 433, 233, 167]
-    ys = [201, 422, 22, 322, 455]
-    matrix = Make_Crown_Matrix(xs, ys)
-    print(matrix)
 
 def Make_Crown_Matrix(template_positionsX,template_positionY):
     crown_amount_matrix = numpy.zeros((5, 5))

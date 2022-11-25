@@ -1,4 +1,3 @@
-import cv2 as cv
 import colorsys
 
 import numpy
@@ -11,8 +10,6 @@ def get_territory_name_from_colour(color, id):
     (h, s, v) = colorsys.rgb_to_hsv(color[2], color[1], color[0])
     values = [h*180,s*255,v]
     hsv = tuple(values)
-
-    #range = 7
 
     col_water = GetAverageColourOfTiles.get_average_colour(GetAverageColourOfTiles.images_water)
     col_forest = GetAverageColourOfTiles.get_average_colour(GetAverageColourOfTiles.images_forest)
@@ -39,7 +36,6 @@ def get_territory_name_from_colour(color, id):
     elif (check_conditions(hsv, col_corn, 6, 50, 40)):
         string = "corn"
 
-   # print(str(string) + "  " + str(id) +"  hsv: " + str(hsv)  )
 
     return string
 
@@ -52,7 +48,6 @@ def get_territory_name_from_colour_list(listOfColours):
 
 
 
-    # print(new2DMatrix)
     new2DMatrix = numpy.reshape(strings,(5,5))
     betterMatrix = new2DMatrix.astype('U10')
 

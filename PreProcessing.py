@@ -2,7 +2,6 @@ import cv2 as cv
 
 import CrownTemplate
 import DominantColourFinder
-import HelperFunctions
 import DivideimageIntoParts
 import MergeDominantColourImages
 import NonMaximaSuppression

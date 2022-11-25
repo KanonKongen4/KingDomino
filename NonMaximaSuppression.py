@@ -1,12 +1,5 @@
 import numpy as np
 
-
-# def isWithinRange(area1, area2, range):
-#     if area1>area2-range and area1< area2 + range:
-#         return True
-#     else:
-#         return False
-
 def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
     # if there are no boxes, return an empty list
     boxesNp = np.array(boxes)
