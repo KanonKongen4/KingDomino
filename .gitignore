@@ -15,3 +15,4 @@ __pycache__/DominantColourFinder.cpython-39.pyc
 __pycache__/DivideimageIntoParts.cpython-39.pyc
 .idea/misc.xml
 .idea/KingDomino.iml
+*.pyc

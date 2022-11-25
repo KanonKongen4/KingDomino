@@ -13,7 +13,7 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
         y, x = current_coordinate
         if stringMatrix[y, x] == tileTypeString:
             stringMatrix[y, x] = stringMatrix[y, x] + str(id)
-            print(stringMatrix[y, x])
+            #print(stringMatrix[y, x])
             if x + 1 < stringMatrix.shape[1] and stringMatrix[y, x + 1] == tileTypeString:
                 burn_queue.append((y, x + 1))
             if y + 1 < stringMatrix.shape[0] and stringMatrix[y + 1, x] == tileTypeString:
@@ -45,9 +45,9 @@ def GetNewMatrixWithID(oldMatrix):
 
     newMatrix = grassfire(oldMatrix, "corn")
     newMatrix = grassfire(oldMatrix, "coal")
-    newMatrix = grassfire(oldMatrix, "tree")
+    newMatrix = grassfire(oldMatrix, "forest")
 
-    newMatrix = grassfire(oldMatrix, "mead")
+    newMatrix = grassfire(oldMatrix, "meadow")
     newMatrix = grassfire(oldMatrix, "desert")
     newMatrix = grassfire(oldMatrix, "water")
 

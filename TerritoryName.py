@@ -20,15 +20,14 @@ def get_territory_name_from_colour(color, id):
 
     GetAverageColourOfTiles.create_image_with_colour_HSV2BGR(col_water,4)
     GetAverageColourOfTiles.create_image_with_colour(color, 5)
-    print("water check:", "colwater: ", col_water, "    -hsv: " , hsv)
     string = "empty"
 
     if (check_conditions(hsv, col_water, 10, 80, 70)):
         string = "water"
     elif (check_conditions(hsv, col_forest, 6, 50, 70)):
-        string = "tree"
+        string = "forest"
     elif (check_conditions(hsv, col_meadow, 6, 50, 70)):
-        string = "mead"
+        string = "meadow"
     elif (check_conditions(hsv, col_desert, 6, 50, 40)):
         string = "desert"
     elif (check_conditions(hsv, col_coal, 30, 50, 80)):
