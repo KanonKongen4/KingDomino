@@ -15,12 +15,6 @@ ex_images_down = list(input_dir_down.glob('*.jpg'))
 ex_images_left = list(input_dir_left.glob('*.jpg'))
 
 
-#Image To Search for crowns in
-imgsearch = cv.imread('20.jpg')
-#To grayscale
-img_gray = cv.cvtColor(imgsearch, cv.COLOR_BGRA2GRAY)
-#width and height of image
-
 DEFAULT_THRESHOLD = 0.8
 boxes = list()
 def Find_Crowns_in_Image(inputImage, listOfExampleCrowns):

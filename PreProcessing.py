@@ -12,7 +12,7 @@ import TerritoryName
 import grassfire
 import GetAverageColourOfTiles
 
-img = cv.imread("TestImages\example (3).jpg")  # Read the test image
+img = cv.imread("TestImages\example (8).jpg")  # Read the test image
 blurred = PrepareTileForTest.blur_image(img)  # blur the input image
 
 listOfTiles = DivideimageIntoParts.divide_image(blurred)  # Divide the image into 25 tiles
