@@ -22,7 +22,6 @@ def ignite_pixel(stringMatrix, coordinate, id, tileTypeString):
                 burn_queue.append((y, x - 1))
             if y - 1 >= 0 and stringMatrix[y - 1, x] == tileTypeString:
                 burn_queue.append((y - 1, x))
-        else: print("fuuuck!")
 
 
 
