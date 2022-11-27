@@ -4,7 +4,7 @@ import CrownTemplate
 import DominantColourFinder
 import DivideimageIntoParts
 import MergeDominantColourImages
-import NonMaximaSuppression
+import NonMaximumSuppression
 import PointsCounter
 import PrepareTileForTest
 import TerritoryName
@@ -34,7 +34,7 @@ print("territoriesSegmented \n", territoriesSegmented)
 
 allCrownPositions = CrownTemplate.GetAllCrowns(img)
 
-crownPositions = NonMaximaSuppression.non_max_suppression(allCrownPositions)
+crownPositions = NonMaximumSuppression.non_max_suppression(allCrownPositions)
 
 xs, ys = CrownTemplate.GetXsYsFromBoxes(crownPositions)
 

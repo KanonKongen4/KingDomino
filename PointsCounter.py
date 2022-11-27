@@ -25,7 +25,7 @@ def FindNumberOfTilesWithID(matrixToSearch, tileName: str):
     print(tileName + " - " + str(connectedTilesCount))
     return connectedTilesCount
 
-def GetListOfConnectedTilesCount(matrixToSearch, namesList):
+def GetListOfConnectedTilesCount(matrixToSearch, namesList):            #Returns a list of the count of each tile group, like "meadow1", "desert1", "desert2", "water3" and so on
     listToReturn = []
     for name in namesList:
         listToReturn.append(FindNumberOfTilesWithID(matrixToSearch,name))

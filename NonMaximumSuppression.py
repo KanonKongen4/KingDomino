@@ -23,11 +23,11 @@ def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
 
     # compute the area of the bounding boxes and grab the indexes to sort
     # (in the case that no probabilities are provided, simply sort on the
-    # bottom-left y-coordinate)
+    # bottom-right y-coordinate)
     area = (x2 - x1 + 1) * (y2 - y1 + 1)
     idxs = y2
 
-    # if probabilities are provided, sort on them instead
+    # if probabilities for match templates are provided, sort on them instead
     if probs is not None:
         idxs = probs
 
@@ -50,7 +50,10 @@ def non_max_suppression(boxes, probs=None, overlapThresh=0.3):
         xx2 = np.minimum(x2[i], x2[idxs[:last]])
         yy2 = np.minimum(y2[i], y2[idxs[:last]])
 
-        # compute the width and height of the bounding box
+        # compute the width and height of the bounding box and makes sure no bounding boxes are deleted if they dont overlap,
+        # since if for an example xx2 - xx1 + 1 results in a negative number, then the next line where bounding boxes overlap
+        # is calculated will equal 0, since 0 will be picked by the np.maximum() method, and 0 times or divided by anything
+        # will always equal zero, making sure that the calculated overlap will not be greater than the set overlapTresh (overlap threshold)
         w = np.maximum(0, xx2 - xx1 + 1)
         h = np.maximum(0, yy2 - yy1 + 1)
 
